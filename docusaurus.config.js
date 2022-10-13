@@ -65,58 +65,31 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'welcome',
             position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
+            label: 'Documentation',
           },
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Sites',
             items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
+                { label: 'Homepage', href: 'https://vatsim.net/' },
+                { label: 'Support Helpdesk', href: 'https://support.vatsim.net/' },
+                { label: 'Community Discord', href: 'https://community.vatsim.net/' },
+                { label: 'MyVATSIM', href: 'https://my.vatsim.net/' },
+                { label: 'Statistics', href: 'https://stats.vatsim.net/' },
+                { label: 'Forums', href: 'https://forums.vatsim.net/' },
+                { label: 'Network Status', href: 'https://network-status.vatsim.net/' },
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
+            title: 'Organization',
+              items: [
+                { label: 'Logos', href: 'https://vats.im/logo' },
+                { label: 'Brand Guidelines', href: 'https://vats.im/brand' },
             ],
           },
         ],
