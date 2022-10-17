@@ -2,6 +2,7 @@
 sidebar_position: 5
 ---
 # Language Samples
+Below are a few select samples of how to use the webhook API. If you would like to contribute another language, feel free to submit a pull request [on the docs repository](https://github.com/vatsimnetwork/apiv2-docs).
 
 ## Python (Django)
 ```py
