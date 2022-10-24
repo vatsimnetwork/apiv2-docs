@@ -11,13 +11,18 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequ
 from apps.users.models import User
 
 
-def process_member_changed_webhook(req_body):
+def process_member_created_webhook(resource, action):
+    # Depending on your schema, you may need to do some custom mapping of
+    # VATSIM fields to your own fields.
+    data = {delta.get('field'): delta.get('after') for delta in action.get('deltas')}
+    new_user = User(**data)
+    new_user.save()
+
+
+def process_member_changed_webhook(resource, action):
     user = User.objects.get(cid=req_body.get('resource'))
-    for update in req_body.get('updates'):
-        for delta in update.get('deltas'):
-            # Depending on your schema, you may need to do some custom mapping of
-            # VATSIM fields to your own fields.
-            setattr(user, delta.get('field'), delta.get('after'))
+    for delta in action.get('deltas'):
+        setattr(user, delta.get('field'), delta.get('after'))
 
 
 def receive_webhook(request):
@@ -30,13 +35,16 @@ def receive_webhook(request):
     if request.META.get('Authorization') != os.getenv('WEBHOOK_API_TOKEN'):
         return HttpResponseForbidden('Invalid webhook token')
 
-    match request.body.get('action'):
-        case 'member_changed_action':
-            process_member_changed_webhook(request)
-        # Rinse and repeat for other webhook actions
-        default:
-            return HttpResponseBadRequest('Invalid webhook action')
+    for action in request.body.get('actions'):
+        match action.get('action'):
+            case 'member_created_action':
+                process_member_created_webhook(request.body.get('resource'), action)
+            case 'member_changed_action':
+                process_member_changed_webhook(request.body.get('resource'), action)
+            # Rinse and repeat for other webhook actions
+            default:
+                return HttpResponseBadRequest('Invalid webhook action')
 
-    # 200 OK response indicates to the API that webhook was recieved and processed
+    # 200 OK response indicates to the API that the webhook was recieved and processed
     return HttpResponse()
 ```
