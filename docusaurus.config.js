@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'VATSIM APIv2',
-  tagline: 'Dinosaurs are cool',
+  title: 'APIv2',
+  tagline: 'A simple API for VATSIM',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -65,7 +65,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'welcome',
+            docId: 'intro',
             position: 'left',
             label: 'Documentation',
           },
@@ -93,7 +93,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} VATSIM Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
