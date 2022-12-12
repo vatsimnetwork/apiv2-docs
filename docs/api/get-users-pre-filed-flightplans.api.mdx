@@ -1,0 +1,37 @@
+---
+id: get-users-pre-filed-flightplans
+title: "Get users pre-filed flightplans"
+description: "Get users pre-filed flightplans"
+sidebar_label: "Get users pre-filed flightplans"
+hide_title: true
+hide_table_of_contents: true
+api: {"tags":["Members"],"responses":{"200":{"description":"Ok"},"404":{"description":"No Ratings matches the given query."}},"description":"Get users pre-filed flightplans","parameters":[{"name":"cid","in":"path","description":"User's CERT ID (CID)","required":true,"schema":{"type":"integer"}}],"method":"get","path":"/members/{cid}/flightplans","servers":[{"url":"https://api.vatsim.net/v2"}],"info":{"title":"VATSIM API","description":"Yes","contact":{"email":"tech@vatsim.net"},"version":"2.0"},"postman":{"name":"Get users pre-filed flightplans","description":{"type":"text/plain"},"url":{"path":["members",":cid","flightplans"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) User's CERT ID (CID)","type":"text/plain"},"type":"any","value":"","key":"cid"}]},"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: docs/api/vatsim-api
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem"
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Get users pre-filed flightplans
+
+
+
+Get users pre-filed flightplans
+
+<details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"cid","in":"path","description":"User's CERT ID (CID)","required":true,"schema":{"type":"integer"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Ok
+
+</div><div></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+No Ratings matches the given query.
+
+</div><div></div></TabItem></ApiTabs></div>
+      

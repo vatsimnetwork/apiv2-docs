@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: VATSIM API
+  description: Yes
+  contact:
+    email: tech@vatsim.net
+  version: '2.0'
+externalDocs:
+  description: Learn more about VATSIM
+  url: https://vatsim.net
+servers:
+  - url: https://api.vatsim.net/v2
+tags:
+  - name: Members
+    description: Access to VATSIM users
+paths:
+  /members:
+    post:
+      summary: 'Create user'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '403':
+          description: 'Forbidden.'
+  /members/{cid}:
+    parameters:
+      - $ref: '#/components/parameters/cid'
+    get:
+      summary: 'Get user details'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '404':
+          description: 'No Ratings matches the given query.'
+    patch:
+      summary: 'Modify user'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '403':
+          description: 'Forbidden.'
+        '404':
+          description: 'No Ratings matches the given query.'
+  /members/{cid}/stats:
+    parameters:
+      - $ref: '#/components/parameters/cid'
+    get:
+      summary: 'Get user statistics'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+        '404':
+          description: 'No Ratings matches the given query.'
+  /members/{cid}/status:
+    parameters:
+      - $ref: '#/components/parameters/cid'
+    get:
+      summary: 'Get user activity status'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+        '404':
+          description: 'No Ratings matches the given query.'
+  /members/{cid}/flightplans:
+    parameters:
+      - $ref: '#/components/parameters/cid'
+    get:
+      summary: 'Get users pre-filed flightplans'
+      tags:
+        - Members
+      responses:
+        '200':
+          description: 'Ok'
+        '404':
+          description: 'No Ratings matches the given query.'
+components:
+  parameters:
+    cid:
+      name: cid
+      in: path
+      description: 'User''s CERT ID (CID)'
+      required: true
+      schema:
+        type: integer
+  schemas:
+    Member:
+      title: Member
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1851903
+        name_first:
+          type: string
+          example: 'John'
+          description: Only available when authenticated, `null` otherwise
+        name_last:
+          type: string
+          example: 'Doe'
+          description: Only available when authenticated, `null` otherwise
+        email:
+          type: string
+          example: 'tech@vatsim.net'
+          description: Only available when authenticated, `null` otherwise
+        rating:
+          type: integer
+          example: 2
+        pilotrating:
+          type: integer
+          example: -1
+        susp_date:
+          type: string
+          example: '2022-10-11T12:09:13'
+        reg_date:
+          type: string
+          example: '2022-10-11T12:09:13'
+        region_id:
+          type: string
+          example: 'AMAS'
+        division_id:
+          type: string
+          example: 'USA'
+        subdivision_id:
+          type: string
+          nullable: true
+          example: null
+        lastratingchange:
+          type: string
+          nullable: true
+          example: '2022-10-18T17:19:34'
