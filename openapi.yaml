@@ -13,6 +13,10 @@ servers:
 tags:
   - name: Members
     description: Access to VATSIM users
+  - name: Organizations
+    description: Access to divisions and subdivisions
+  - name: ATC
+    description: Access to ATC sessions
 paths:
   /members:
     post:
@@ -95,6 +99,62 @@ paths:
           description: 'Ok'
         '404':
           description: 'No Ratings matches the given query.'
+  /division/{division_id}:
+    parameters:
+      - $ref: '#/components/parameters/division_id'
+    get:
+      summary: 'Get division roster'
+      tags:
+        - Organizations
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+        '403':
+          description: 'Forbidden.'
+        '404':
+          description: 'No divisions matches the given query.'
+  /subdivision/{subdivision_id}:
+    parameters:
+      - $ref: '#/components/parameters/subdivision_id'
+    get:
+      summary: 'Get subdivision roster'
+      tags:
+        - Organizations
+      responses:
+        '200':
+          description: 'Ok'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+        '403':
+          description: 'Forbidden.'
+        '404':
+          description: 'No subdivisions matches the given query.'
+  /atc/online:
+    get:
+      summary: 'Get online ATC'
+      tags:
+        - ATC
+      responses:
+        '200':
+          description: 'Ok'
+  /atc/history:
+    get:
+      summary: 'Get historical ATC sessions'
+      tags:
+        - ATC
+      responses:
+        '200':
+          description: 'Ok'
 components:
   parameters:
     cid:
@@ -104,6 +164,20 @@ components:
       required: true
       schema:
         type: integer
+    division_id:
+      name: division_id
+      in: path
+      description: Division ID
+      required: true
+      schema:
+        type: string
+    subdivision_id:
+      name: subdivision_id
+      in: path
+      description: Subdivision ID
+      required: true
+      schema:
+        type: string
   schemas:
     Member:
       title: Member
